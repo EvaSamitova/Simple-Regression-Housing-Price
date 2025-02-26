@@ -83,3 +83,40 @@ ggplot(test_data, aes(x = BuildingArea, y = Price)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm", color = "red") +
   labs(title = "Smoothed Regression Line", x = "Building Area", y = "Price")
+
+#Update code to show plots
+ggplot(housing_data, aes(x = BuildingArea, y = Price)) +
+  geom_point(alpha = 0.5) +
+  labs(title = "Scatter Plot of Price vs Building Area", x = "Building Area", y = "Price")
+ggsave("scatter_price_building.png", width = 6, height = 4, dpi = 300)
+
+#Update code to show plots after
+ggplot(train_data, aes(x = BuildingArea, y = Price)) +
+  geom_point(alpha = 0.5) +
+  labs(title = "Scatter Plot After Removing Outliers", x = "Building Area", y = "Price")
+ggsave("scatter_no_outliers.png", width = 6, height = 4, dpi = 300)
+
+# Create the scatter plot
+p <- ggplot(housing_data, aes(x = BuildingArea, y = Price)) +
+  geom_point(alpha = 0.5) +
+  labs(title = "Scatter Plot of Price vs Building Area", x = "Building Area", y = "Price")
+
+# Print the plot to verify
+print(p)
+
+# Save the plot explicitly
+ggsave(filename = "scatter_price_building.png", plot = p, width = 6, height = 4, dpi = 300)
+
+
+#Save Actual vs Predicted Prices Plot
+ggplot(test_data, aes(x = Price, y = PredictedPrice)) +
+  geom_point(alpha = 0.5) +
+  labs(title = "Actual vs Predicted Prices", x = "Actual Price", y = "Predicted Price")
+ggsave("actual_vs_predicted.png", width = 6, height = 4, dpi = 300)
+
+#Save Regression Line on Test Data
+ggplot(test_data, aes(x = BuildingArea, y = Price)) +
+  geom_point(alpha = 0.5) +
+  geom_function(fun = function(x) intercept + coefficient * x, color = "blue") +
+  labs(title = "Regression Line on Test Data", x = "Building Area", y = "Price")
+ggsave("regression_line.png", width = 6, height = 4, dpi = 300)
